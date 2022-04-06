@@ -182,7 +182,135 @@ function  liveDangerously(x?: number | null) {
 }
 ```
 
+- This doesn’t change the runtime behavior of your code, so it’s important to only use `!` when you know that the value _can’t_ be `null` or `undefined`
 
 
+## Enums
+
+```
+enum  Direction {
+	Up = 1,
+	Down,
+	Left,
+	Right,
+}
+```
+
+- Above, we have a numeric enum where `Up` is initialized with `1`. All of the following members are auto-incremented from that point on. In other words, `Direction.Up` has the value `1`, `Down` has `2`, `Left` has `3`, and `Right` has `4`.
 
 
+```
+enum  UserResponse {
+	No = 0,
+	Yes = 1,
+}
+
+function  respond(recipient: string, message: UserResponse): void {
+	// ...
+}
+respond("Princess Caroline", UserResponse.Yes);
+```
+
+## Function Type Expressions
+
+```
+function  greeter(fn: (a: string) =>  void) {
+	fn("Hello, World");
+}
+
+function  printToConsole(s: string) {
+	console.log(s);
+}
+
+greeter(printToConsole);
+```
+
+## Object Types
+
+```
+// Normal Object type
+function  greet(person: { name: string; age: number }) {
+	return  "Hello " + person.name;
+}
+```
+
+```
+// Using interface
+
+interface  Person {
+	name: string;
+	age: number;
+}
+
+function  greet(person: Person) {
+	return  "Hello " + person.name;
+}
+```
+
+```
+// Using type
+
+type  Person {
+	name: string;
+	age: number;
+}
+
+function  greet(person: Person) {
+	return  "Hello " + person.name;
+}
+```
+
+### Optional Properties
+
+```
+interface  PaintOptions {
+	shape: Shape;
+	xPos?: number;
+	yPos?: number;
+}
+
+function  paintShape(opts: PaintOptions) {
+	// ...
+}
+
+const  shape = getShape();
+
+paintShape({ shape });
+paintShape({ shape, xPos:  100 });
+paintShape({ shape, yPos:  100 });
+paintShape({ shape, xPos:  100, yPos:  100 });
+```
+
+### `readonly`Properties
+
+```
+interface  SomeType {
+	readonly  prop: string;
+}
+
+function  doSomething(obj: SomeType) {
+	// We can read from 'obj.prop'.
+	console.log(`prop has the value '${obj.prop}'.`);
+
+	// But we can't re-assign it.
+	obj.prop = "hello";
+}
+```
+
+```
+Error : Cannot assign to 'prop' because it is a read-only property.Cannot assign to 'prop' because it is a read-only property.
+```
+
+### The`Array`Type
+
+```
+function  doSomething(value: Array<string>) {
+	// ...
+}
+
+let  myArray: string[] = ["hello", "world"];
+
+// either of these work!
+doSomething(myArray);
+doSomething(new  Array("hello", "world"));
+```
