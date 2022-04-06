@@ -48,75 +48,67 @@ function  printCoord(pt: { x: number; y: number }) {
 printCoord({ x:  3, y:  7 });
 ```
 
-Optional Properties:
-
+### Optional Properties:
+```
 function  printName(obj: { first: string; last?: string }) {
-
-// ...
-
+	// ...
 }
 
 // Both OK
 
 printName({ first:  "Bob" });
-
 printName({ first:  "Alice", last:  "Alisson" });
 
-Union Type:
+```
 
+### Union Type:
+```
 function  printId(id: number | string) {
-
-console.log("Your ID is: " + id);
-
+	console.log("Your ID is: " + id);
 }
+```
 
-Type Aliases:
 
+### Type Aliases:
+
+```
 type  Point = {
-
-x: number;
-
-y: number;
-
+	x: number;
+	y: number;
 };
 
 // Exactly the same as the earlier example
 
 function  printCoord(pt: Point) {
-
-console.log("The coordinate's x value is " + pt.x);
-
-console.log("The coordinate's y value is " + pt.y);
-
+	console.log("The coordinate's x value is " + pt.x);
+	console.log("The coordinate's y value is " + pt.y);
 }
 
 printCoord({ x:  100, y:  100 });
 
-Interfaces:
+```
 
+### Interfaces:
+
+```
 interface  Point {
-
-x: number;
-
-y: number;
-
+	x: number;
+	y: number;
 }
 
 function  printCoord(pt: Point) {
-
-console.log("The coordinate's x value is " + pt.x);
-
-console.log("The coordinate's y value is " + pt.y);
-
+	console.log("The coordinate's x value is " + pt.x);
+	console.log("The coordinate's y value is " + pt.y);
 }
 
 printCoord({ x:  100, y:  100 });
 
-Interface vs Type
+```
+
+### Interface vs Type
 
 -   That a type cannot be re-opened to add new properties vs an interface which is always extendable.
     
 
-Type Assertions:
+### Type Assertions:
 
-Ad
