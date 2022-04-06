@@ -107,7 +107,8 @@ printCoord({ x:  100, y:  100 });
 
 ### Interface vs Type
 
--   That a type cannot be re-opened to add new properties vs an interface which is always extendable.
+-   Type cannot be re-opened to add new properties 
+-  Interface which is always extendable.
     
 
 ### Type Assertions:
