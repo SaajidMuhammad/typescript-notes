@@ -111,5 +111,78 @@ printCoord({ x:  100, y:  100 });
 -  Interface which is always extendable.
     
 
-### Type Assertions:
+## Type Assertions:
+
+- Sometimes you will have information about the type of a value that TypeScript can’t know about.
+
+- For example, if you’re using  `document.getElementById`, TypeScript only knows that this will return  _some_  kind of  `HTMLElement`, but you might know that your page will always have an  `HTMLCanvasElement`  with a given ID.
+
+### Example : 
+
+```
+const  myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
+```
+
+```
+const  myCanvas = <HTMLCanvasElement>document.getElementById("main_canvas");
+```
+
+<hr>
+
+### Literal Types
+
+```
+let  x: "hello" = "hello";
+
+x = "hello"; // OK
+x = "howdy"; // Error
+
+// Type '"howdy"' is not assignable to type '"hello"'.
+```
+
+
+```
+function  printText(s: string, alignment: "left" | "right" | "center") {
+	// ...
+}
+
+printText("Hello, world", "left"); // OK
+printText("G'day, mate", "centre"); // Error
+
+// Argument of type '"centre"' is not assignable to parameter of type '"left" | "right" | "center"'.
+```
+
+### Literal Inference
+```
+// Change 1:
+const  req = { url:  "https://example.com", method:  "GET"  as  "GET" };
+
+// Change 2
+handleRequest(req.url, req.method  as  "GET");
+```
+
+## `null` and `undefined`
+
+```
+function  doSomething(x: string | null) {
+	if (x === null) {
+		// do nothing
+	} else {
+		console.log("Hello, " + x.toUpperCase());
+	}
+}
+```
+
+### Non-null Assertion Operator (Postfix`!`)
+
+```
+function  liveDangerously(x?: number | null) {
+	// No error
+	console.log(x!.toFixed());
+}
+```
+
+
+
+
 
